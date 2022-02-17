@@ -1,0 +1,39 @@
+
+  
+  <div class="example-container">
+    <h2>DRAG Section</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="todo"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+     
+      <div class="example-box" *ngFor="let item of todo" [ngSwitch]="item" >
+          <ng-template ngSwitchCase="input">
+               <input  class="example-box" type="text" placeholder="input" cdkDrag >
+          </ng-template>
+          <ng-template ngSwitchCase="button">
+              <button class="btn btn-primary"  type="button" cdkDrag >button</button>
+          </ng-template>
+          <ng-template ngSwitchCase="textAria">
+              <textarea cdkDrag>textAria</textarea>
+          </ng-template>
+          <ng-template ngSwitchCase="checkBox">  
+              <div cdkDrag>
+                  <input type="checkbox" id="scales" name="scales"
+                         checked>
+                  <label for="scales">checkBox</label>
+                </div>  
+          </ng-template>   
+          <ng-template ngSwitchCase="Select">
+            <select cdkDrag>
+                <option value="">1 Opt</option>
+                <option value="">2 Opt</option>
+            </select>
+        </ng-template>
+       </div> 
+    </div>
+  </div>
+
+

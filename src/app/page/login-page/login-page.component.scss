@@ -1,0 +1,21 @@
+.login {
+  &_form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    background-color: rgb(184, 184, 187);
+    margin: 200px auto;
+    // width: 50%;
+    // height: 100%;
+    border: 3px solid black;
+    color: rgb(255, 255, 255);
+  }
+  &_input {
+  }
+}
+.validation {
+  margin-top: -10px;
+  color: red;
+}
