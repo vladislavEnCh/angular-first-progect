@@ -1,29 +1,60 @@
 <div class="container login">
-    <div class="login_form">
-        <h2>LOGIN</h2>
-        <form [formGroup]="formLoginGroup" (ngSubmit)="submit()">
-            <label for="email">Email:</label>
-            <input formControlName="email" id="email" class="login_input" type="text">
-            <div 
-            *ngIf="formLoginGroup.get('email').invalid && formLoginGroup.get('email').touched" 
-            class="validation">
-            
-                <small>введите коректно email</small>
-               
-            </div>
-            <!-- ======================= -->
-            <label for="password">Password:</label>
-            <input formControlName="password" id="password" class="login_input" type="password">
-            <div 
-            *ngIf="formLoginGroup.get('password').invalid && formLoginGroup.get('password').touched" 
-            class="validation">
-            
-                <small>введите коректно password</small>
-                
-            </div>
-            <button [disabled]="formLoginGroup.invalid" class="btn btn-primary" type="submit">Login</button>
-        </form>
-        
-    </div>
-
+  <div class="login_form">
+    <h2>LOGIN</h2>
+    <form [formGroup]="formLoginGroup" (ngSubmit)="submit()">
+      <div
+        class="alert alert-danger"
+        *ngIf="authService.error$ | async as error"
+      >
+        {{ error }}
+      </div>
+      <label for="email">Email:</label>
+      <input
+        formControlName="email"
+        id="email"
+        class="login_input"
+        type="text"
+      />
+      <div
+        *ngIf="
+          formLoginGroup.get('email')?.invalid &&
+          formLoginGroup.get('email')?.touched
+        "
+        class="validation"
+      >
+        <small>введите коректно email</small>
+      </div>
+      <!-- ======================= -->
+      <label for="password">Password:</label>
+      <input
+        formControlName="password"
+        id="password"
+        class="login_input"
+        type="password"
+      />
+      <div
+        *ngIf="
+          formLoginGroup.get('password')?.invalid &&
+          formLoginGroup.get('password')?.touched
+        "
+        class="validation"
+      >
+        <small>введите коректно password</small>
+      </div>
+      <button
+        [disabled]="formLoginGroup.invalid"
+        class="button btn-primary"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+    <button
+      (click)="handleReg()"
+      [disabled]="formLoginGroup.invalid"
+      class="button btn-danger"
+    >
+      Authorization
+    </button>
+  </div>
 </div>

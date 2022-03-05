@@ -1,37 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-// import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-section-three',
   templateUrl: './section-three.component.html',
-  styleUrls: ['./section-three.component.scss']
+  styleUrls: ['./section-three.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionThreeComponent implements OnInit {
+export class SectionThreeComponent {
+  dragList: Array<string> = [
+    'input',
+    'button',
+    'textAria',
+    'checkBox',
+    'Select',
+  ];
 
- 
-  todo = ["input", "button", "textAria", "checkBox", "Select"];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
   drop(event: CdkDragDrop<string[]>) {
-   
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
-      
       transferArrayItem(
-       
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
-        
+        event.currentIndex
       );
     }
   }
-
 }

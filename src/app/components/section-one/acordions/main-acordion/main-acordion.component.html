@@ -1,0 +1,37 @@
+<cdk-accordion class="example-accordion">
+  <cdk-accordion-item
+    #accordionItem1="cdkAccordionItem"
+    class="example-accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.aria-expanded]="accordionItem1.expanded"
+  >
+    <div
+      class="myStyle example-accordion-item-header"
+      (click)="accordionItem1.toggle()"
+    >
+      <strong>Main Style</strong>
+      <span class="example-accordion-item-description">
+        Click to {{ accordionItem1.expanded ? "close" : "open" }}
+      </span>
+    </div>
+    <div
+      class="example-accordion-item-body"
+      role="region"
+      [style.display]="accordionItem1.expanded ? '' : 'none'"
+    >
+      <form [formGroup]="formMain" (ngSubmit)="submitMainStyle()">
+        <input
+          formControlName="background-color"
+          type="color"
+          placeholder="backround"
+        />
+        <input formControlName="width" type="text" placeholder="width" />
+        <input formControlName="height" type="text" placeholder="height" />
+        <input formControlName="border" type="text" placeholder="border" />
+
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>

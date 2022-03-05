@@ -1,53 +1,70 @@
-<div class="example-container ">
-    <h2>Drop Section</h2>
-<div class="example-style">
+<div class="example-container">
+  <h2>Ставить сюда</h2>
+  <div class="example-style">
     <div
-    
       cdkDropList
-      [cdkDropListData]="done"
+      [cdkDropListData]="dropList"
       class="example-list example-style"
-     [ngStyle]="styleForMainBlock"
-      (cdkDropListDropped)="drop($event)">
-      <div class=" example-style" *ngFor="let item of done" [ngSwitch]="item.item" >
+      [ngStyle]="styleForMainBlock"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="example-style"
+        *ngFor="let item of dropList"
+        [ngSwitch]="item.item"
+      >
         <ng-template ngSwitchCase="input">
-            <!-- <span>{{item | json}}</span> -->
-            <input [ngStyle]="item.style"  
-            (click)="takeId(item.id)" 
-            (click)="takeType($event)"
-            [id]="item.id"  
-            class="example-box" 
-            type="text" 
-            [placeholder]="item.style.placeholder" 
-            cdkDrag >
+          <!-- <span>{{item | json}}</span> -->
+          <input
+            [ngStyle]="item.style"
+            (click)="takeId(item.id)"
+            [id]="item.id"
+            class="example-box"
+            type="text"
+            [placeholder]="
+              item.style.placeholder || 'here can be your placeholder'
+            "
+            cdkDrag
+          />
         </ng-template>
         <ng-template ngSwitchCase="button">
-            <button  
+          <button
             [ngStyle]="item.style"
-            (click)="takeId(item.id)" 
-            (click)="takeType($event)"
-            [id]="item.id" 
-            class="btn btn-primary"  
-            type="button" 
-            cdkDrag >{{item.style.placeholder || 'button'}}</button>
+            (click)="takeId(item.id)"
+            [id]="item.id"
+            class="btn btn-primary"
+            type="button"
+            cdkDrag
+          >
+            {{ item.style.placeholder || "here can be your call" | show: "px" }}
+          </button>
         </ng-template>
         <ng-template ngSwitchCase="textAria">
-            <textarea [ngStyle]="item.style"  (click)="takeId(item.id)"(click)="takeType($event)" cdkDrag>textAria</textarea>
+          <textarea [ngStyle]="item.style" (click)="takeId(item.id)" cdkDrag>
+textAria
+        </textarea
+          >
         </ng-template>
-        <ng-template ngSwitchCase="checkBox">  
-            <div cdkDrag>
-                <input [ngStyle]="item.style" (click)="takeType($event)"  (click)="takeId(item.id)" type="checkbox" id="scales" name="scales"
-                       checked>
-                <label for="scales">checkBox</label>
-              </div>  
-        </ng-template>   
+        <ng-template ngSwitchCase="checkBox">
+          <div cdkDrag>
+            <input
+              [ngStyle]="item.style"
+              (click)="takeId(item.id)"
+              type="checkbox"
+              id="scales"
+              name="scales"
+              checked
+            />
+            <label for="scales">checkBox</label>
+          </div>
+        </ng-template>
         <ng-template ngSwitchCase="Select">
-            <select [ngStyle]="item.style" (click)="takeType($event)"  (click)="takeId(item.id)">
-                <option value="">1 Opt</option>
-                <option value="">2 Opt</option>
-            </select>
+          <select [ngStyle]="item.style" (click)="takeId(item.id)">
+            <option value="">1 Opt</option>
+            <option value="">2 Opt</option>
+          </select>
         </ng-template>
-     </div> 
-      
-        </div>
+      </div>
     </div>
   </div>
+</div>

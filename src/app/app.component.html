@@ -1,10 +1,18 @@
 <nav class="navbar">
   <div class="main">
-    
-    <ul>
+    <ul class="navbar_ul">
       <li><a routerLink="/">Main</a></li>
-      <li><a routerLink="/login">Login</a></li>
+      <li>
+        <a
+          *ngIf="authService.isAuthenticated(); else second"
+          (click)="handleLogout()"
+          >Logout</a
+        >
+        <ng-template #second><a (click)="handleLogout()">Login</a></ng-template>
+      </li>
     </ul>
   </div>
 </nav>
-<router-outlet></router-outlet>
+<div class="">
+  <router-outlet></router-outlet>
+</div>

@@ -1,15 +1,24 @@
+import { AuthGuard } from './page/auth.guard';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './page/login-page/login-page.component';
-import { MainPageComponent } from './page/main-page/main-page.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'', component: MainPageComponent},
-  {path:'login', component: LoginPageComponent}
+  {
+    path: '',
+    loadChildren: () =>
+      import('./page/main-page/main.-page.module').then(
+        (r) => r.MainPageModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
+  exports: [RouterModule],
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
